@@ -147,4 +147,15 @@ public class UserController {
                         .body(UserDtoListResponse.of(true,
                                 Collections.emptyList()));
     }
+
+    @GetMapping("/email/{emailPart}")
+    public ResponseEntity<UserDtoListResponse> getByEmailContaining(
+            @PathVariable(value = "emailPart") String emailPart) {
+        List<User> list = userService.findByEmailContaining(emailPart);
+        return (!list.isEmpty()) ?
+                ResponseEntity.status(HttpStatus.OK)
+                        .body(UserDtoListResponse.of(false, list)) :
+                ResponseEntity.status(HttpStatus.OK)
+                        .body(UserDtoListResponse.of(true, Collections.emptyList()));
+    }
 }

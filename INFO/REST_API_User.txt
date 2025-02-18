@@ -125,3 +125,6 @@ http://localhost:8080/Spring-Data-Jpa-Rest-1.0-SNAPSHOT/api/v1/users/4
 
 Спробуємо видалити повторно.
 
+(9) Пошук по email
+GET
+http://localhost:8080/Spring-Data-Jpa-Rest-1.0-SNAPSHOT/api/v1/users/email/@mail

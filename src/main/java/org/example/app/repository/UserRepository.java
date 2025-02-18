@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 // або з доданими вручну методами для забезпечення CRUD функціональності.
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,4 +58,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // що має збігатися зі значенням параметру lastName цього методу.
     // Результат: маємо отримати колекцію відповідних записів.
     Optional<List<User>> findByLastName(String lastName);
+
+
+    @Query("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(CONCAT('%', :emailPart, '%'))")
+    List<User> findByEmailContaining(@Param("emailPart") String emailPart);
 }

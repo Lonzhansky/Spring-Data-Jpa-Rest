@@ -18,4 +18,5 @@ public interface UserService extends BaseService<User, UserDtoRequest> {
     User findFirstByOrderByIdDesc();
     List<User> findByFirstName(String firstName);
     List<User> findByLastName(String lastName);
+    List<User> findByEmailContaining(String emailPart);
 }

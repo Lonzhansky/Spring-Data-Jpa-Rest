@@ -107,4 +107,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByLastName(lastName)
                 .orElse(Collections.emptyList());
     }
+
+    @Override
+    @Transactional
+    public List<User> findByEmailContaining(String emailPart) {
+        return userRepository.findByEmailContaining(emailPart);
+    }
 }
